@@ -1,0 +1,60 @@
+@ContactListWebApp_HostAddress = http://localhost:5242
+
+GET {{ContactListWebApp_HostAddress}}/api/contacts
+
+###
+
+GET {{ContactListWebApp_HostAddress}}/api/contacts/7ae5234a-050b-45ff-8378-4704c9a9801c
+
+###
+
+POST {{ContactListWebApp_HostAddress}}/api/contacts
+Content-Type: application/json
+
+{
+  "name": "Ewa",
+  "surname": "Kowalska",
+  "email": "ewa.kowalska@example.com",
+  "password": "StrongPass2!",
+  "phoneNumber": "+48999111222",
+  "dateOfBirth": "1992-06-01",
+  "categoryId": 3,
+  "subcategoryId": null,
+  "customSubcategory": "Freelancer"
+}
+
+###
+
+DELETE {{ContactListWebApp_HostAddress}}/api/contacts/f3339c35-1cdd-4768-a86e-feaaab5ab5b6
+
+###
+
+PATCH {{ContactListWebApp_HostAddress}}/api/contacts/f3339c35-1cdd-4768-a86e-feaaab5ab5b6
+Content-Type: application/json
+
+{
+  "name": "Tomasz",
+  "surname": "Opala",
+  "password": "StrongPass2!",
+  "phoneNumber": "+48999000222",
+  "dateOfBirth": "1992-06-01",
+  "categoryId": 3,
+  "subcategoryId": null,
+  "customSubcategory": "Teacher"
+}
+
+###
+
+POST {{ContactListWebApp_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "jan.kowalski@example.com",
+  "password": "SecurePass123!+"
+}
+
+###
+
+GET {{ContactListWebApp_HostAddress}}/api/category
+
+###

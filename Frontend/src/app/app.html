@@ -1,0 +1,33 @@
+<header class="topbar">
+  <div class="left">
+    <a routerLink="/contacts" class="nav-link">Contacts</a>
+    <a routerLink="/login" class="nav-link">Login</a>
+  </div>
+
+  <div class="right">
+    @if (authService.currentUser()) {
+      <span class="user-badge">
+        Logged: {{ authService.currentUser() }}
+      </span>
+    }
+
+    @if (authService.currentUser()) {
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="onLogout()"
+        [disabled]="navLoading()"
+      >
+        {{ navLoading() ? 'Logging out...' : 'Logout' }}
+      </button>
+    }
+  </div>
+</header>
+
+@if (navError()) {
+  <p class="error-box">{{ navError() }}</p>
+}
+
+<main class="page-content">
+  <router-outlet />
+</main>

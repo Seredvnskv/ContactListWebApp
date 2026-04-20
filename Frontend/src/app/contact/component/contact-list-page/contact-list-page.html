@@ -1,0 +1,47 @@
+<section class="contacts-page">
+  <div class="page-header">
+    <h2>Contacts</h2>
+    <p>List of all contacts</p>
+    @if (authService.currentUser()) {
+      <a routerLink="/contacts/new" class="details-link">Add contact</a>
+    }
+  </div>
+
+  @if (loading()) {
+    <p class="info">Loading contacts...</p>
+  } @else if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else if (contacts().length === 0) {
+    <p class="info">No contacts yet.</p>
+  } @else {
+    <div class="contact-grid">
+      @for (contact of contacts(); track contact.id) {
+        <article class="contact-card">
+          <h3>{{ contact.name }} {{ contact.surname }}</h3>
+          <p><strong>Email:</strong> {{ contact.email }}</p>
+          <p><strong>Phone:</strong> {{ contact.phoneNumber }}</p>
+
+          <div>
+            @if (authService.currentUser()) {
+              <a class="details-link" [routerLink]="['/contacts', contact.id]">
+                Show details
+              </a>
+              
+              <a class="update-btn" [routerLink]="['/contacts', contact.id, 'edit']">
+                Update
+              </a>
+
+              <button
+                type="button"
+                class="delete-btn"
+                (click)="onDelete(contact)"
+              >
+                Delete
+              </button>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>

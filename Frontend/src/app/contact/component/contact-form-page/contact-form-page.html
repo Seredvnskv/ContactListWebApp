@@ -1,0 +1,80 @@
+<section class="form-page">
+  <a routerLink="/contacts" class="back-link">← Back to contacts</a>
+  <h2>Add contact</h2>
+
+  @if (loadingCategories()) {
+    <p>Loading categories...</p>
+  } @else {
+    <form #f="ngForm" (ngSubmit)="onSubmit()" class="contact-form">
+      <label>
+        Name
+        <input name="name" [(ngModel)]="form.name" required />
+      </label>
+
+      <label>
+        Surname
+        <input name="surname" [(ngModel)]="form.surname" required />
+      </label>
+
+      <label>
+        Email
+        <input name="email" type="email" [(ngModel)]="form.email" required email />
+      </label>
+
+      <label>
+        Password
+        <input name="password" type="password" [(ngModel)]="form.password" required />
+      </label>
+
+      <label>
+        Phone
+        <input name="phoneNumber" [(ngModel)]="form.phoneNumber" required />
+      </label>
+
+      <label>
+        Date of birth
+        <input name="dateOfBirth" type="date" [(ngModel)]="form.dateOfBirth" required />
+      </label>
+
+      <label>
+        Category
+        <select name="categoryId" [(ngModel)]="form.categoryId" (ngModelChange)="onCategoryChange()" required>
+          <option [ngValue]="null">-- select --</option>
+          @for (category of categories(); track category.id) {
+            <option [ngValue]="category.id">{{ category.categoryName }}</option>
+          }
+        </select>
+      </label>
+
+      @if (isBusiness()) {
+        <label>
+          Subcategory
+          <select name="subcategoryId" [(ngModel)]="form.subcategoryId" required>
+            <option [ngValue]="null">-- select --</option>
+            @for (sub of selectedCategory()?.subcategories ?? []; track sub.id) {
+              <option [ngValue]="sub.id">{{ sub.subcategoryName }}</option>
+            }
+          </select>
+        </label>
+      }
+
+      @if (isOther()) {
+        <label>
+          Custom subcategory
+          <input name="customSubcategory" [(ngModel)]="form.customSubcategory" required />
+        </label>
+      }
+
+      <button type="submit" [disabled]="submit() || !f.valid">
+        {{ submit() ? 'Saving...' : 'Save contact' }}
+      </button>
+    </form>
+  }
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+  @if (success()) {
+    <p class="success">{{ success() }}</p>
+  }
+</section>

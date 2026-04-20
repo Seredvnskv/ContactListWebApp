@@ -1,0 +1,20 @@
+<section class="details-page">
+  <a class="back-link" routerLink="/contacts">← Back to contacts</a>
+
+  @if (loading()) {
+    <p class="info">Loading details...</p>
+  } @else if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else if (contact()) {
+    <article class="details-card">
+      <h2>{{ contact()!.name }} {{ contact()!.surname }}</h2>
+
+      <div class="row"><strong>Email:</strong> <span>{{ contact()!.email }}</span></div>
+      <div class="row"><strong>Phone:</strong> <span>{{ contact()!.phoneNumber }}</span></div>
+      <div class="row"><strong>Category:</strong> <span>{{ contact()!.contactCategory }}</span></div>
+      <div class="row"><strong>Subcategory:</strong> <span>{{ contact()!.contactSubcategory || '-' }}</span></div>
+      <div class="row"><strong>Date of birth:</strong> <span>{{ contact()!.dateOfBirth }}</span></div>
+      <div class="row"><strong>Password:</strong> <span>{{contact()!.password}}</span></div>
+    </article>
+  }
+</section>
