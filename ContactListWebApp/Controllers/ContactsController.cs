@@ -9,11 +9,11 @@ namespace ContactListWebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContactController : ControllerBase // Kontroler do zarządzania kontaktami, obsługujący operacje CRUD na kontaktach
+    public class ContactsController : ControllerBase // Kontroler do zarządzania kontaktami, obsługujący operacje CRUD na kontaktach
     {
         private readonly IContactService _contactService;
 
-        public ContactController(IContactService contactService)
+        public ContactsController(IContactService contactService)
         {
             _contactService = contactService;
         }
