@@ -66,3 +66,7 @@ Po uruchomieniu uslug:
 - Frontend: `http://localhost:4200`
 - Backend API: `http://localhost:8080`
 - SQL Server: `localhost:1433`
+
+Przykładowe dane do logowania:
+- "email": "jan.kowalski@example.com",
+- "password": "SecurePass123!+"
